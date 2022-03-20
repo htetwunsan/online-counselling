@@ -15,15 +15,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            RoleAndPermissionSeeder::class
-        ]);
-        $user = User::firstOrCreate([
+        User::firstOrCreate([
             'name' => 'admin',
-            'email' => 'admin@example.com',
+            'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
+            'role' => 'admin'
         ]);
-        $user->assignRole('system admin');
+        $this->call([
+            SpecialitySeeder::class,
+            ServiceSeeder::class,
+            PreferLanguageSeeder::class,
+            QuestionSeeder::class,
+            CounsellorSeeder::class,
+        ]);
     }
 }
